@@ -1,0 +1,11 @@
+set term svg
+set output "scatter-plot.svg"
+
+set style fill  transparent solid 0.1 noborder
+set style circle radius 0.1
+
+set title "Correlation of common leading bits of ip addresses and their ping delay"
+set xlabel "Common leading bits in ip address"
+set ylabel "Ping in ms"
+
+plot "data.csv" with circles lc rgb "blue"
