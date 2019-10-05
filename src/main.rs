@@ -23,7 +23,7 @@ fn spawn_random_ping_on_interval(
     pinger: tokio_ping::Pinger,
     own_public_ip: Ipv4Addr,
 ) -> Box<dyn Future<Item = (), Error = ()> + Send> {
-    let interval = Interval::new_interval(Duration::from_millis(10));
+    let interval = Interval::new_interval(Duration::from_millis(1));
 
     Box::new(
         interval
@@ -45,7 +45,7 @@ fn spawn_random_ping(pinger: tokio_ping::Pinger, own_public_ip: Ipv4Addr) {
         ping.and_then(move |resp| {
             if let Some(delay) = resp {
                 println!(
-                    "{:?};{:?}",
+                    "{:?}; {:?}",
                     leading_bits_in_common(own_public_ip, rand_ip),
                     delay.as_millis()
                 );
